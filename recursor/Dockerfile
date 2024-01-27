@@ -20,7 +20,6 @@ RUN \
     libcurl4-openssl-dev \
     libfstrm-dev \
     liblua5.3-dev \
-    lua5.3 \
     libluajit-5.1-dev \
     libprotobuf-dev \
     libsnmp-dev \
@@ -48,7 +47,7 @@ RUN \
     --sysconfdir=/etc/powerdns \
     --sbindir=/usr/sbin \
     --with-libsodium \
-    --with-lua=${LUAVER} \
+    # --with-lua=${LUAVER} \
     --with-net-snmp \
     --enable-option-checking=fatal \
     --enable-dns-over-tls \

@@ -19,7 +19,6 @@ RUN \
     libldap2-dev \
     liblmdb-dev \
     liblua5.3-dev \
-    lua5.3 \
     libluajit-5.1-dev \
     libmaxminddb-dev \
     libp11-kit-dev \
@@ -52,7 +51,7 @@ RUN \
     --with-modules="" \
     --with-dynmodules="bind geoip gmysql godbc gpgsql gsqlite3 ldap lmdb lua2 pipe remote tinydns" \
     --with-libsodium \
-    --with-lua=${LUAVER} \
+    # --with-lua=${LUAVER} \
     --with-lmdb \
     --enable-ixfrdist \
     --enable-option-checking=fatal \
