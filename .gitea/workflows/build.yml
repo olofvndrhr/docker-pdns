@@ -20,6 +20,9 @@ jobs:
       IMAGE: pdns-recursor
       CONTEXT: recursor
     steps:
+      - name: fix release tag
+        run: echo "VERSION=${GITHUB_REF_NAME#*-}" >> ${GITHUB_ENV}
+
       - name: checkout code
         uses: actions/checkout@v3
 
@@ -42,9 +45,9 @@ jobs:
             type=schedule
             type=ref,event=branch
             type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
+            type=semver,pattern={{version}},value=${{ env.VERSION }}
+            type=semver,pattern={{major}}.{{minor}},value=${{ env.VERSION }}
+            type=semver,pattern={{major}},value=${{ env.VERSION }}
             type=sha
 
       - name: login to docker.io container registry
@@ -80,6 +83,9 @@ jobs:
       IMAGE: pdns-auth
       CONTEXT: auth
     steps:
+      - name: fix release tag
+        run: echo "VERSION=${GITHUB_REF_NAME#*-}" >> ${GITHUB_ENV}
+
       - name: checkout code
         uses: actions/checkout@v3
 
@@ -102,9 +108,9 @@ jobs:
             type=schedule
             type=ref,event=branch
             type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
+            type=semver,pattern={{version}},value=${{ env.VERSION }}
+            type=semver,pattern={{major}}.{{minor}},value=${{ env.VERSION }}
+            type=semver,pattern={{major}},value=${{ env.VERSION }}
             type=sha
 
       - name: login to docker.io container registry
@@ -140,6 +146,9 @@ jobs:
       IMAGE: pdns-lightningstream
       CONTEXT: lightningstream
     steps:
+      - name: fix release tag
+        run: echo "VERSION=${GITHUB_REF_NAME#*-}" >> ${GITHUB_ENV}
+
       - name: checkout code
         uses: actions/checkout@v3
 
@@ -162,9 +171,9 @@ jobs:
             type=schedule
             type=ref,event=branch
             type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
+            type=semver,pattern={{version}},value=${{ env.VERSION }}
+            type=semver,pattern={{major}}.{{minor}},value=${{ env.VERSION }}
+            type=semver,pattern={{major}},value=${{ env.VERSION }}
             type=sha
 
       - name: login to docker.io container registry
