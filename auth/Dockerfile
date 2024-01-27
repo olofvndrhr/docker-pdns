@@ -19,6 +19,7 @@ RUN \
     libldap2-dev \
     liblmdb-dev \
     liblua5.3-dev \
+    lua5.3 \
     libluajit-5.1-dev \
     libmaxminddb-dev \
     libp11-kit-dev \
@@ -49,7 +50,7 @@ RUN \
     --sysconfdir=/etc/powerdns \
     --sbindir=/usr/sbin \
     --with-modules="" \
-    --with-dynmodules="bind gmysql gpgsql gsqlite3 lmdb lua2" \
+    --with-dynmodules="bind geoip gmysql godbc gpgsql gsqlite3 ldap lmdb lua2 pipe remote tinydns" \
     --with-libsodium \
     --with-lua=${LUAVER} \
     --with-lmdb \

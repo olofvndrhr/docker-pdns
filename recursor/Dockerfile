@@ -20,6 +20,7 @@ RUN \
     libcurl4-openssl-dev \
     libfstrm-dev \
     liblua5.3-dev \
+    lua5.3 \
     libluajit-5.1-dev \
     libprotobuf-dev \
     libsnmp-dev \
