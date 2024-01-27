@@ -11,7 +11,7 @@ on:
 jobs:
   build-recursor:
     uses: actions/workflows/.gitea/workflows/build_container.yml@master
-    if: ${{ ! startsWith(github.ref, 'refs/tags/rec-') }}
+    if: ${{ startsWith(github.ref_name, 'rec-') }}
     with:
       registry: docker.io
       image-name: olofvndrhr/pdns-recursor
@@ -24,7 +24,7 @@ jobs:
 
   build-auth:
     uses: actions/workflows/.gitea/workflows/build_container.yml@master
-    if: ${{ ! startsWith(github.ref, 'refs/tags/auth-') }}
+    if: ${{ startsWith(github.ref_name, 'auth-') }}
     with:
       registry: docker.io
       image-name: olofvndrhr/pdns-auth
@@ -37,7 +37,7 @@ jobs:
 
   build-lightningstream:
     uses: actions/workflows/.gitea/workflows/build_container.yml@master
-    if: ${{ ! startsWith(github.ref, 'refs/tags/ls-') }}
+    if: ${{ startsWith(github.ref_name, 'ls-') }}
     with:
       registry: docker.io
       image-name: olofvndrhr/pdns-lightningstream
