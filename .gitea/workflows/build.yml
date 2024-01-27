@@ -1,0 +1,49 @@
+name: build container
+
+on:
+  push:
+    tags:
+      - "*-*"
+
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  build-recursor:
+    uses: actions/workflows/.gitea/workflows/build_container.yml@master
+    if: ${{ ! startsWith(github.ref, 'refs/tags/rec-') }}
+    with:
+      registry: docker.io
+      image-name: olofvndrhr/pdns-recursor
+      context: recursor
+      dockerfile: recursor/Dockerfile
+      platforms: linux/amd64,linux/arm64
+    secrets:
+      cr-username: ${{ secrets.CR_USERNAME }}
+      cr-password: ${{ secrets.CR_PASSWORD }}
+
+  build-auth:
+    uses: actions/workflows/.gitea/workflows/build_container.yml@master
+    if: ${{ ! startsWith(github.ref, 'refs/tags/auth-') }}
+    with:
+      registry: docker.io
+      image-name: olofvndrhr/pdns-auth
+      context: auth
+      dockerfile: auth/Dockerfile
+      platforms: linux/amd64,linux/arm64
+    secrets:
+      cr-username: ${{ secrets.CR_USERNAME }}
+      cr-password: ${{ secrets.CR_PASSWORD }}
+
+  build-lightningstream:
+    uses: actions/workflows/.gitea/workflows/build_container.yml@master
+    if: ${{ ! startsWith(github.ref, 'refs/tags/ls-') }}
+    with:
+      registry: docker.io
+      image-name: olofvndrhr/pdns-lightningstream
+      context: lightningstream
+      dockerfile: lightningstream/Dockerfile
+      platforms: linux/amd64,linux/arm64
+    secrets:
+      cr-username: ${{ secrets.CR_USERNAME }}
+      cr-password: ${{ secrets.CR_PASSWORD }}
