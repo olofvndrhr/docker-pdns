@@ -75,6 +75,15 @@ jobs:
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
 
+      - name: update dockerhub repo description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          repository: olofvndrhr/docker-pdns
+          short-description: ${{ github.event.repository.description }}
+          enable-url-completion: true
+          username: ${{ secrets.CR_USERNAME }}
+          password: ${{ secrets.CR_PASSWORD }}
+
   build-auth:
     runs-on: ubuntu-latest
     if: ${{ startsWith(github.ref_name, 'auth-') }}
@@ -138,6 +147,15 @@ jobs:
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
 
+      - name: update dockerhub repo description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          repository: olofvndrhr/docker-pdns
+          short-description: ${{ github.event.repository.description }}
+          enable-url-completion: true
+          username: ${{ secrets.CR_USERNAME }}
+          password: ${{ secrets.CR_PASSWORD }}
+
   build-lightningstream:
     runs-on: ubuntu-latest
     if: ${{ startsWith(github.ref_name, 'ls-') }}
@@ -200,3 +218,12 @@ jobs:
           provenance: false
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
+
+      - name: update dockerhub repo description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          repository: olofvndrhr/docker-pdns
+          short-description: ${{ github.event.repository.description }}
+          enable-url-completion: true
+          username: ${{ secrets.CR_USERNAME }}
+          password: ${{ secrets.CR_PASSWORD }}
