@@ -17,7 +17,7 @@ jobs:
     if: ${{ startsWith(github.ref_name, 'rec-') }}
     env:
       AUTHOR: olofvndrhr
-      NAME: pdns-recursor
+      IMAGE: pdns-recursor
     steps:
       - name: checkout code
         uses: actions/checkout@v3
@@ -76,7 +76,7 @@ jobs:
     if: ${{ startsWith(github.ref_name, 'auth-') }}
     env:
       AUTHOR: olofvndrhr
-      NAME: pdns-auth
+      IMAGE: pdns-auth
     steps:
       - name: checkout code
         uses: actions/checkout@v3
@@ -135,7 +135,7 @@ jobs:
     if: ${{ startsWith(github.ref_name, 'ls-') }}
     env:
       AUTHOR: olofvndrhr
-      NAME: pdns-lightningstream
+      IMAGE: pdns-lightningstream
     steps:
       - name: checkout code
         uses: actions/checkout@v3
