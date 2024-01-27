@@ -18,6 +18,7 @@ jobs:
     env:
       AUTHOR: olofvndrhr
       IMAGE: pdns-recursor
+      CONTEXT: recursor
     steps:
       - name: checkout code
         uses: actions/checkout@v3
@@ -65,8 +66,8 @@ jobs:
         with:
           push: ${{ gitea.event_name != 'pull_request' }}
           platforms: linux/amd64,linux/arm64
-          context: ${{ env.IMAGE }}
-          file: ${{ env.IMAGE }}/Dockerfile
+          context: ${{ env.CONTEXT }}
+          file: ${{ env.CONTEXT }}/Dockerfile
           provenance: false
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
@@ -77,6 +78,7 @@ jobs:
     env:
       AUTHOR: olofvndrhr
       IMAGE: pdns-auth
+      CONTEXT: auth
     steps:
       - name: checkout code
         uses: actions/checkout@v3
@@ -124,8 +126,8 @@ jobs:
         with:
           push: ${{ gitea.event_name != 'pull_request' }}
           platforms: linux/amd64,linux/arm64
-          context: ${{ env.IMAGE }}
-          file: ${{ env.IMAGE }}/Dockerfile
+          context: ${{ env.CONTEXT }}
+          file: ${{ env.CONTEXT }}/Dockerfile
           provenance: false
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
@@ -136,6 +138,7 @@ jobs:
     env:
       AUTHOR: olofvndrhr
       IMAGE: pdns-lightningstream
+      CONTEXT: lightningstream
     steps:
       - name: checkout code
         uses: actions/checkout@v3
@@ -183,8 +186,8 @@ jobs:
         with:
           push: ${{ gitea.event_name != 'pull_request' }}
           platforms: linux/amd64,linux/arm64
-          context: ${{ env.IMAGE }}
-          file: ${{ env.IMAGE }}/Dockerfile
+          context: ${{ env.CONTEXT }}
+          file: ${{ env.CONTEXT }}/Dockerfile
           provenance: false
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
