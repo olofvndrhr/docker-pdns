@@ -55,6 +55,7 @@ RUN \
     --with-libsodium \
     # --with-lua=${LUAVER} \
     --with-lmdb \
+    --with-unixodbc-lib="/usr/lib/$(dpkg-architecture -q DEB_BUILD_GNU_TYPE)" \
     --enable-ixfrdist \
     --enable-option-checking=fatal \
     --enable-dns-over-tls \
