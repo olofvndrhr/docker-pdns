@@ -85,10 +85,10 @@ RUN \
 
 #####
 
-FROM git.44net.ch/44net-assets/debian-s6:11
+FROM git.44net.ch/44net/debian-s6:11
 
 LABEL maintainer="Ivan Schaller" \
-    description="powerdns cluster: auth"
+    description="powerdns-auth"
 
 COPY --from=builder /build /
 COPY rootfs /

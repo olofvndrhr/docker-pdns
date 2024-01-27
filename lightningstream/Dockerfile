@@ -13,10 +13,10 @@ RUN \
 
 #####
 
-FROM git.44net.ch/44net-assets/debian-s6:11
+FROM git.44net.ch/44net/debian-s6:11
 
 LABEL maintainer="Ivan Schaller" \
-    description="powerdns cluster: lightningstream"
+    description="powerdns-lightningstream"
 
 COPY --from=builder /usr/local/bin/lightningstream /usr/local/bin/lightningstream
 COPY rootfs /
