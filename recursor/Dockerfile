@@ -19,14 +19,15 @@ RUN \
     libcap-dev \
     libcurl4-openssl-dev \
     libfstrm-dev \
-    liblua5.3-dev \
     libluajit-5.1-dev \
+    liblua5.3-dev \
     libprotobuf-dev \
     libsnmp-dev \
     libsodium-dev \
     libssl-dev \
     libsystemd-dev \
     pkgconf \
+    protobuf-compiler \
     ragel \
     dns-root-data \
     publicsuffix \

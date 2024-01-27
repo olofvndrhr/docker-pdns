@@ -9,6 +9,7 @@ RUN \
     echo "*** installing deps ***" \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
+    default-libmysqlclient-dev \
     dnsutils \
     flex \
     libboost-all-dev \
@@ -18,20 +19,21 @@ RUN \
     libkrb5-dev \
     libldap2-dev \
     liblmdb-dev \
-    liblua5.3-dev \
     libluajit-5.1-dev \
+    liblua5.3-dev \
     libmaxminddb-dev \
     libp11-kit-dev \
     libpq-dev \
     libprotobuf-dev \
     libsodium-dev \
     libsqlite3-dev \
-    default-libmysqlclient-dev \
     libssl-dev \
     libyaml-cpp-dev \
     pkgconf \
     po-debconf \
+    protobuf-compiler \
     ragel \
+    unixodbc-dev \
     dpkg-dev \
     equivs
 
