@@ -1,0 +1,41 @@
+services:
+  auth:
+    image: olofvndrhr/pdns-auth:latest
+    container_name: pdns-auth
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./auth.conf:/etc/powerdns/pdns.d/auth.conf:ro
+      - ./db-data/:/data:rw
+    environment:
+      - TZ=Europe/Zurich
+      - PUID=4444
+      - PGID=4444
+
+  recursor:
+    image: olofvndrhr/pdns-recursor:latest
+    container_name: pdns-recursor
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./recursor.conf/:/etc/powerdns/recursor.d/recursor.conf:ro
+    environment:
+      - TZ=Europe/Zurich
+      - PUID=4444
+      - PGID=4444
+
+  lightningstream:
+    image: olofvndrhr/pdns-lightningstream:latest
+    container_name: pdns-lightningstream
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./lightningstream.yml:/lightningstream.yml:ro
+      - ./db-data/:/data:rw
+    environment:
+      - TZ=Europe/Zurich
+      - PUID=4444
+      - PGID=4444
+      - INSTANCE_NAME=${INSTANCE_NAME}
+      - AWS_ACCESS_KEY=${AWS_ACCESS_KEY}
+      - AWS_SECRET_KEY=${AWS_SECRET_KEY}

@@ -1,0 +1,8 @@
+.idea/
+.vscode/
+.env
+test.*
+compose-test.yml
+compose.override.yml
+build/auth/configure
+build/recursor/configure

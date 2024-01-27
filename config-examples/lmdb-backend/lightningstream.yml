@@ -1,0 +1,48 @@
+instance: ${INSTANCE_NAME}
+
+http:
+  address: ":8500"
+
+log:
+  level: info
+  format: human
+  timestamp: short
+
+storage_poll_interval: 5s
+lmdb_poll_interval: 5s
+storage_retry_interval: 10s
+storage_retry_count: 100
+storage_force_snapshot_interval: 6h
+
+lmdbs:
+  main:
+    path: /data/pdns.lmdb
+    schema_tracks_changes: true
+    options:
+      no_subdir: true
+      create: true
+      map_size: 1000MB
+  shard:
+    path: /data/pdns.lmdb-0
+    schema_tracks_changes: true
+    options:
+      no_subdir: true
+      create: true
+      map_size: 1000MB
+
+storage:
+  type: s3
+  options:
+    access_key: ${AWS_ACCESS_KEY}
+    secret_key: ${AWS_SECRET_KEY}
+    region: XXXX
+    bucket: XXXX
+    endpoint_url: https://XXXX
+    create_bucket: false
+    global_prefix: XXXX
+    use_update_marker: true
+  cleanup:
+    enabled: true
+    interval: 30m
+    must_keep_interval: 24h
+    remove_old_instances_interval: 168h
