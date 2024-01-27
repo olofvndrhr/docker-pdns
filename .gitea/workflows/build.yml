@@ -78,7 +78,7 @@ jobs:
       - name: update dockerhub repo description
         uses: peter-evans/dockerhub-description@v3
         with:
-          repository: olofvndrhr/docker-pdns
+          repository: olofvndrhr/${{ env.IMAGE }}
           short-description: ${{ github.event.repository.description }}
           enable-url-completion: true
           username: ${{ secrets.CR_USERNAME }}
@@ -150,7 +150,7 @@ jobs:
       - name: update dockerhub repo description
         uses: peter-evans/dockerhub-description@v3
         with:
-          repository: olofvndrhr/docker-pdns
+          repository: ${{ env.IMAGE }}
           short-description: ${{ github.event.repository.description }}
           enable-url-completion: true
           username: ${{ secrets.CR_USERNAME }}
@@ -222,7 +222,7 @@ jobs:
       - name: update dockerhub repo description
         uses: peter-evans/dockerhub-description@v3
         with:
-          repository: olofvndrhr/docker-pdns
+          repository: olofvndrhr/${{ env.IMAGE }}
           short-description: ${{ github.event.repository.description }}
           enable-url-completion: true
           username: ${{ secrets.CR_USERNAME }}
