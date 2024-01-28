@@ -1,12 +1,44 @@
 # powerdns docker images for amd64 & arm64
 
-> with s6 supervisor
+## features
 
-### docker images in this repo
+- amd64 & arm64 builds
+- s6 supervisor
+- common unix tools installed (tar, curl, rsync etc.)
+- non-root image
+- UID/GID freely changeable
 
-- [powerdns-recursor](https://github.com/PowerDNS/pdns/tree/master)
-- [powerdns-authoritative](https://github.com/PowerDNS/pdns/tree/master)
-- [powerdns-lightningstream](https://github.com/PowerDNS/lightningstream)
+## docker images in this repo
+
+### [powerdns-recursor](https://github.com/PowerDNS/pdns/tree/master)
+
+[docker hub](https://hub.docker.com/repository/docker/olofvndrhr/pdns-recursor)
+
+image name: `olofvndrhr/pdns-recursor`
+
+```bash
+docker run olofvndrhr/pdns-recursor
+```
+
+### [powerdns-authoritative](https://github.com/PowerDNS/pdns/tree/master)
+
+[docker hub](https://hub.docker.com/repository/docker/olofvndrhr/pdns-auth)
+
+image name: `olofvndrhr/pdns-auth`
+
+```bash
+docker run olofvndrhr/pdns-auth
+```
+
+### [powerdns-lightningstream](https://github.com/PowerDNS/lightningstream)
+
+[docker hub](https://hub.docker.com/repository/docker/olofvndrhr/pdns-lightningstream)
+
+image name: `olofvndrhr/pdns-lightningstream`
+
+```bash
+docker run olofvndrhr/pdns-lightningstream
+```
 
 ### examples
 
