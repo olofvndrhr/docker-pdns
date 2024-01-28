@@ -12,7 +12,7 @@
 
 ### [powerdns-recursor](https://github.com/PowerDNS/pdns/tree/master)
 
-[docker hub](https://hub.docker.com/repository/docker/olofvndrhr/pdns-recursor)
+[docker hub](https://hub.docker.com/r/olofvndrhr/pdns-recursor)
 
 image name: `olofvndrhr/pdns-recursor`
 
@@ -22,7 +22,7 @@ docker run olofvndrhr/pdns-recursor
 
 ### [powerdns-authoritative](https://github.com/PowerDNS/pdns/tree/master)
 
-[docker hub](https://hub.docker.com/repository/docker/olofvndrhr/pdns-auth)
+[docker hub](https://hub.docker.com/r/olofvndrhr/pdns-auth)
 
 image name: `olofvndrhr/pdns-auth`
 
@@ -32,7 +32,7 @@ docker run olofvndrhr/pdns-auth
 
 ### [powerdns-lightningstream](https://github.com/PowerDNS/lightningstream)
 
-[docker hub](https://hub.docker.com/repository/docker/olofvndrhr/pdns-lightningstream)
+[docker hub](https://hub.docker.com/r/olofvndrhr/pdns-lightningstream)
 
 image name: `olofvndrhr/pdns-lightningstream`
 
