@@ -8,11 +8,11 @@ jobs:
   test-build-recursor:
     uses: actions/workflows/.gitea/workflows/build_container.yml@master
     with:
-      registry: docker.io
+      registry: git.44net.ch
       image-name: olofvndrhr/pdns-recursor
       context: recursor
       dockerfile: recursor/Dockerfile
-      platforms: linux/amd64
+      platforms: linux/amd64,linux/arm64
     secrets:
       cr-username: ${{ secrets.CR_USERNAME }}
       cr-password: ${{ secrets.CR_PASSWORD }}
@@ -20,11 +20,11 @@ jobs:
   test-build-auth:
     uses: actions/workflows/.gitea/workflows/build_container.yml@master
     with:
-      registry: docker.io
+      registry: git.44net.ch
       image-name: olofvndrhr/pdns-auth
       context: auth
       dockerfile: auth/Dockerfile
-      platforms: linux/amd64
+      platforms: linux/amd64,linux/arm64
     secrets:
       cr-username: ${{ secrets.CR_USERNAME }}
       cr-password: ${{ secrets.CR_PASSWORD }}
@@ -32,11 +32,11 @@ jobs:
   test-build-lightningstream:
     uses: actions/workflows/.gitea/workflows/build_container.yml@master
     with:
-      registry: docker.io
+      registry: git.44net.ch
       image-name: olofvndrhr/pdns-lightningstream
       context: lightningstream
       dockerfile: lightningstream/Dockerfile
-      platforms: linux/amd64
+      platforms: linux/amd64,linux/arm64
     secrets:
       cr-username: ${{ secrets.CR_USERNAME }}
       cr-password: ${{ secrets.CR_PASSWORD }}
