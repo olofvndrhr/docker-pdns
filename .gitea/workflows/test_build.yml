@@ -14,8 +14,8 @@ jobs:
       dockerfile: recursor/Dockerfile
       platforms: linux/amd64,linux/arm64
     secrets:
-      cr-username: ${{ secrets.CR_USERNAME }}
-      cr-password: ${{ secrets.CR_PASSWORD }}
+      cr-username: ${{ secrets.CR_PRIV_USERNAME }}
+      cr-password: ${{ secrets.CR_PRIV_PASSWORD }}
 
   test-build-auth:
     uses: actions/workflows/.gitea/workflows/build_container.yml@master
@@ -26,8 +26,8 @@ jobs:
       dockerfile: auth/Dockerfile
       platforms: linux/amd64,linux/arm64
     secrets:
-      cr-username: ${{ secrets.CR_USERNAME }}
-      cr-password: ${{ secrets.CR_PASSWORD }}
+      cr-username: ${{ secrets.CR_PRIV_USERNAME }}
+      cr-password: ${{ secrets.CR_PRIV_PASSWORD }}
 
   test-build-lightningstream:
     uses: actions/workflows/.gitea/workflows/build_container.yml@master
@@ -38,5 +38,5 @@ jobs:
       dockerfile: lightningstream/Dockerfile
       platforms: linux/amd64,linux/arm64
     secrets:
-      cr-username: ${{ secrets.CR_USERNAME }}
-      cr-password: ${{ secrets.CR_PASSWORD }}
+      cr-username: ${{ secrets.CR_PRIV_USERNAME }}
+      cr-password: ${{ secrets.CR_PRIV_PASSWORD }}
