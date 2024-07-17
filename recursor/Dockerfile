@@ -1,4 +1,4 @@
-FROM rust:1.77-bullseye as builder
+FROM rust:1.77-bullseye AS builder
 
 ENV PDNS_VERSION="5.0.1"
 
@@ -101,7 +101,7 @@ RUN \
     && echo "*** other stuff ***" \
     && update-ca-certificates
 
-RUN \   
+RUN \
     echo "**** cleanup ****" \
     && apt-get purge --auto-remove -y \
     && apt-get clean \

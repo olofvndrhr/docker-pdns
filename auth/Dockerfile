@@ -1,4 +1,4 @@
-FROM git.44net.ch/44net/debian-builder:11 as builder
+FROM git.44net.ch/44net/debian-builder:11 AS builder
 
 ENV PDNS_VERSION="4.8.4"
 
@@ -114,7 +114,7 @@ RUN \
     && echo "*** other stuff ***" \
     && update-ca-certificates
 
-RUN \   
+RUN \
     echo "**** cleanup ****" \
     && apt-get purge --auto-remove -y \
     && apt-get clean \
