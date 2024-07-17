@@ -1,6 +1,6 @@
 FROM rust:1.77-bullseye AS builder
 
-ENV PDNS_VERSION="5.0.1"
+ENV PDNS_VERSION="5.1.0"
 
 ENV MAKEFLAGS="--jobs 4"
 
