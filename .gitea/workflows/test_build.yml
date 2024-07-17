@@ -5,38 +5,80 @@ on:
     branches: [main, master]
 
 jobs:
-  test-build-recursor:
-    uses: actions/workflows/.gitea/workflows/build_container.yml@master
-    with:
-      registry: git.44net.ch
-      image-name: olofvndrhr/pdns-recursor
-      context: recursor
-      dockerfile: recursor/Dockerfile
-      platforms: linux/amd64,linux/arm64
-    secrets:
-      cr-username: ${{ secrets.CR_PRIV_USERNAME }}
-      cr-password: ${{ secrets.CR_PRIV_PASSWORD }}
+  build-recursor:
+    runs-on: ubuntu-latest
+    env:
+      AUTHOR: olofvndrhr
+      IMAGE: pdns-recursor
+      CONTEXT: recursor
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
 
-  test-build-auth:
-    uses: actions/workflows/.gitea/workflows/build_container.yml@master
-    with:
-      registry: git.44net.ch
-      image-name: olofvndrhr/pdns-auth
-      context: auth
-      dockerfile: auth/Dockerfile
-      platforms: linux/amd64,linux/arm64
-    secrets:
-      cr-username: ${{ secrets.CR_PRIV_USERNAME }}
-      cr-password: ${{ secrets.CR_PRIV_PASSWORD }}
+      - name: setup qemu
+        uses: docker/setup-qemu-action@v3
 
-  test-build-lightningstream:
-    uses: actions/workflows/.gitea/workflows/build_container.yml@master
-    with:
-      registry: git.44net.ch
-      image-name: olofvndrhr/pdns-lightningstream
-      context: lightningstream
-      dockerfile: lightningstream/Dockerfile
-      platforms: linux/amd64,linux/arm64
-    secrets:
-      cr-username: ${{ secrets.CR_PRIV_USERNAME }}
-      cr-password: ${{ secrets.CR_PRIV_PASSWORD }}
+      - name: setup docker buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: build docker image @amd64+arm64
+        uses: docker/build-push-action@v6
+        with:
+          push: false
+          platforms: linux/amd64,linux/arm64
+          context: ${{ env.CONTEXT }}
+          file: ${{ env.CONTEXT }}/Dockerfile
+          provenance: false
+          tags: "pdns-recursor:test"
+
+  build-auth:
+    runs-on: ubuntu-latest
+    env:
+      AUTHOR: olofvndrhr
+      IMAGE: pdns-auth
+      CONTEXT: auth
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: setup qemu
+        uses: docker/setup-qemu-action@v3
+
+      - name: setup docker buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: build docker image @amd64+arm64
+        uses: docker/build-push-action@v6
+        with:
+          push: false
+          platforms: linux/amd64,linux/arm64
+          context: ${{ env.CONTEXT }}
+          file: ${{ env.CONTEXT }}/Dockerfile
+          provenance: false
+          tags: "pdns-auth:test"
+
+  build-lightningstream:
+    runs-on: ubuntu-latest
+    env:
+      AUTHOR: olofvndrhr
+      IMAGE: pdns-lightningstream
+      CONTEXT: lightningstream
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: setup qemu
+        uses: docker/setup-qemu-action@v3
+
+      - name: setup docker buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: build docker image @amd64+arm64
+        uses: docker/build-push-action@v6
+        with:
+          push: false
+          platforms: linux/amd64,linux/arm64
+          context: ${{ env.CONTEXT }}
+          file: ${{ env.CONTEXT }}/Dockerfile
+          provenance: false
+          tags: "pdns-lightningstream:test"
