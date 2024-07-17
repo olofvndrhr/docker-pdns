@@ -1,6 +1,6 @@
 FROM golang:1.22-bullseye as builder
 
-ENV LS_VERSION="v0.4.2"
+ENV LS_VERSION="v0.4.3"
 
 ENV GOBIN=/usr/local/bin
 

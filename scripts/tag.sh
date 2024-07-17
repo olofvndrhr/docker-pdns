@@ -1,13 +1,29 @@
 #!/usr/bin/env bash
 
-set -xeuo pipefail
+set -eo pipefail
 
 current_date="$(date +%Y%m%d)"
 
+if [[ -z "${1}" || -z "${2}" ]]; then
+    cat << EOF
+usage:
+-> ${0} <target> <tag>
+
+targets:
+    - rec   (recursor)
+    - auth  (authoritative)
+    - ls    (lightningstream)
+
+example:
+-> ${0} rec 1.1.1
+EOF
+fi
+
 push_tag() {
+    set -x
     local tag_name="${1}"
-    git tag --force "${tag_name}" -m "${tag_name}"
-    git push --force origin "${tag_name}"
+    git tag "${tag_name}" -m "${tag_name}"
+    git push origin "${tag_name}"
 }
 
 case "${1}" in
