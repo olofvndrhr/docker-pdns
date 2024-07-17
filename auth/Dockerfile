@@ -1,6 +1,6 @@
 FROM git.44net.ch/44net/debian-builder:11 AS builder
 
-ENV PDNS_VERSION="4.8.4"
+ENV PDNS_VERSION="4.9.1"
 
 ENV MAKEFLAGS="--jobs 4"
 
