@@ -1,4 +1,4 @@
-FROM rust:1.77-bullseye AS builder
+FROM rust:1.80-bullseye AS builder
 
 ENV PDNS_VERSION="5.1.0"
 
