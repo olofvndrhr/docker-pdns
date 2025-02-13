@@ -1,4 +1,4 @@
-FROM golang:1.22-bullseye AS builder
+FROM golang:1.24-bullseye AS builder
 
 ENV LS_VERSION="v0.4.3"
 
