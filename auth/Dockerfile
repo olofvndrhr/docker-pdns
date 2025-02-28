@@ -11,7 +11,8 @@ RUN \
     && curl https://repo.powerdns.com/FD380FBB-pub.asc | tee /etc/apt/keyrings/auth-49-pub.asc \
     && apt-get update \
     && apt-get install -y \
-        pdns-server \
+        # https://repo.powerdns.com/debian/dists/bullseye-auth-49/main/binary-amd64/Packages
+        pdns-server=4.9.4-1pdns.bullseye \
         pdns-backend-lmdb \
         pdns-backend-bind \
         pdns-backend-mysql \
