@@ -1,0 +1,1 @@
+deb [signed-by=/etc/apt/keyrings/rec-51-pub.asc] http://repo.powerdns.com/debian bullseye-rec-51 main
