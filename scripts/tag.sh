@@ -22,7 +22,7 @@ fi
 set_tag() {
     set -x
     local tag_name="${1}"
-    git tag "${tag_name}" -m "${tag_name}"
+    git tag --force "${tag_name}" -m "${tag_name}"
 }
 
 case "${1}" in
