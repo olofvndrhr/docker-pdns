@@ -1,1 +1,1 @@
-deb [signed-by=/etc/apt/keyrings/auth-49-pub.asc] http://repo.powerdns.com/debian bullseye-auth-49 main
+deb [signed-by=/etc/apt/keyrings/auth-pub.asc] http://repo.powerdns.com/debian bullseye-auth-49 main

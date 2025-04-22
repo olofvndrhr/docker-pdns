@@ -8,11 +8,11 @@ COPY rootfs /
 RUN \
     echo "**** installing pdns-rec ****" \
     && install -d /etc/apt/keyrings \
-    && curl https://repo.powerdns.com/FD380FBB-pub.asc | tee /etc/apt/keyrings/rec-51-pub.asc \
+    && curl https://repo.powerdns.com/FD380FBB-pub.asc | tee /etc/apt/keyrings/rec-pub.asc \
     && apt-get update \
     && apt-get install -y \
-        # https://repo.powerdns.com/debian/dists/bullseye-rec-51/main/binary-amd64/Packages
-        pdns-recursor=5.1.3-1pdns.debian11
+        # https://repo.powerdns.com/debian/dists/bullseye-rec-52/main/binary-amd64/Packages
+        pdns-recursor=5.2.2-1pdns.debian11
 
 RUN \
     echo "**** creating folders ****" \
