@@ -1,0 +1,7 @@
+incoming:
+  listen:
+    - 0.0.0.0
+    - "::"
+
+recursor:
+  include_dir: /etc/powerdns/recursor.d
