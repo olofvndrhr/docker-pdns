@@ -53,3 +53,7 @@ build-rec:
 build-ls:
     @echo "building pdns-ls"
     cd lightningstream && docker build . -f Dockerfile -t pdns-ls:test
+
+build-dnsdist:
+    @echo "building pdns-dnsdist"
+    cd dnsdist && docker build . -f Dockerfile -t pdns-dnsdist:test

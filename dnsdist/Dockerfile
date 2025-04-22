@@ -1,29 +1,29 @@
 FROM git.44net.ch/44net/debian-s6:11
 
 LABEL maintainer="Ivan Schaller" \
-    description="powerdns-recursor"
+    description="powerdns-dnsdist"
 
 COPY rootfs /
 
 RUN \
-    echo "**** installing pdns-rec ****" \
+    echo "**** installing pdns-dnsdist ****" \
     && install -d /etc/apt/keyrings \
-    && curl https://repo.powerdns.com/FD380FBB-pub.asc | tee /etc/apt/keyrings/rec-pub.asc \
+    && curl https://repo.powerdns.com/FD380FBB-pub.asc | tee /etc/apt/keyrings/dnsdist-pub.asc \
     && apt-get update \
     && apt-get install -y \
-        # https://repo.powerdns.com/debian/dists/bullseye-rec-52/main/binary-amd64/Packages
-        pdns-recursor=5.2.2-1pdns.debian11
+        # https://repo.powerdns.com/debian/dists/bullseye-dnsdist-20/main/binary-amd64/Packages
+        dnsdist=2.0.0~alpha1-1pdns.debian11
 
 RUN \
     echo "**** creating folders ****" \
-    && rm -rf /etc/powerdns \
-    && mv /etc/_powerdns /etc/powerdns \
+    && rm -rf /etc/dnsdist \
+    && mv /etc/_dnsdist /etc/dnsdist \
     && mkdir -p \
-        /var/run/pdns-recursor \
-        /etc/powerdns/recursor.d \
+        /var/run/dnsdist \
+        /etc/dnsdist/conf.d \
     && chown -R abc:abc \
-        /var/run/pdns-recursor \
-        /etc/powerdns \
+        /var/run/dnsdist \
+        /etc/dnsdist \
     && echo "*** other stuff ***" \
     && update-ca-certificates
 
@@ -38,4 +38,7 @@ RUN \
 
 EXPOSE 53/udp
 EXPOSE 53/tcp
-EXPOSE 8082/tcp
+EXPOSE 443/udp
+EXPOSE 443/tcp
+EXPOSE 853/udp
+EXPOSE 853/tcp

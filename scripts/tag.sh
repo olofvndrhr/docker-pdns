@@ -10,9 +10,10 @@ usage:
 -> ${0} <target> <tag>
 
 targets:
-    - rec   (recursor)
-    - auth  (authoritative)
-    - ls    (lightningstream)
+    - rec  | recursor
+    - auth | authoritative
+    - ls   | lightningstream
+    - dnsdist
 
 example:
 -> ${0} rec 1.1.1
@@ -27,12 +28,15 @@ set_tag() {
 
 case "${1}" in
     "rec" | "recursor")
-        set_tag "rec-${2}+${current_date}"
+        set_tag "recursor-${2}+${current_date}"
         ;;
     "auth" | "authoritative")
         set_tag "auth-${2}+${current_date}"
         ;;
     "ls" | "lightningstream")
-        set_tag "ls-${2}+${current_date}"
+        set_tag "lightningstream-${2}+${current_date}"
+        ;;
+    "dnsdist")
+        set_tag "dnsdist-${2}+${current_date}"
         ;;
 esac

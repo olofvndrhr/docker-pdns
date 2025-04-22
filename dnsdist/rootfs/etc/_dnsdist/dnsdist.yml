@@ -1,0 +1,65 @@
+acl:
+  - 0.0.0.0/0
+  - ::/0
+
+binds:
+  - listen_address: "0.0.0.0:53"
+    additional_addresses: ["[::]:53"]
+    protocol: "Do53"
+
+  # - listen_address: "0.0.0.0:443"
+  #   additional_addresses: ["[::]:443"]
+  #   protocol: "DoH"
+  #   tls:
+  #     certificates:
+  #       - certificate: "/certs/fullchain.pem"
+  #         key: "/certs/privkey.pem"
+  #   doh:
+  #     provider: "nghttp2"
+  #     paths:
+  #       - "/"
+  #     custom_response_headers:
+  #       - key: "alt-svc"
+  #         value: 'h3=":443"'
+
+  # - listen_address: "0.0.0.0:443"
+  #   additional_addresses: ["[::]:443"]
+  #   protocol: "DoH3"
+  #   tls:
+  #     certificates:
+  #       - certificate: "/certs/fullchain.pem"
+  #         key: "/certs/privkey.pem"
+  #   quic:
+  #     congestion_control_algorithm: "bbr"
+
+  # - listen_address: "0.0.0.0:853"
+  #   additional_addresses: ["[::]:853"]
+  #   protocol: "DoQ"
+  #   tls:
+  #     certificates:
+  #       - certificate: "/certs/fullchain.pem"
+  #         key: "/certs/privkey.pem"
+  #   quic:
+  #     congestion_control_algorithm: "bbr"
+
+  # - listen_address: "0.0.0.0:853"
+  #   additional_addresses: ["[::]:853"]
+  #   protocol: "DoT"
+  #   tls:
+  #     certificates:
+  #       - certificate: "/certs/fullchain.pem"
+  #         key: "/certs/privkey.pem"
+
+backends:
+  - address: "127.0.0.1:53"
+    protocol: "Do53"
+    name: local-recursor
+    tcp_only: true
+    health_checks:
+      qname: "a.root-servers.net."
+      qtype: "AAAA"
+      qclass: "CHAOS"
+      must_resolve: true
+
+load_balancing_policies:
+  default_policy: "firstAvailable"

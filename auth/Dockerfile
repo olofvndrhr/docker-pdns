@@ -24,11 +24,11 @@ RUN \
     && rm -rf /etc/powerdns \
     && mv /etc/_powerdns /etc/powerdns \
     && mkdir -p \
-    /var/run/pdns \
-    /etc/powerdns/pdns.d \
+        /var/run/pdns \
+        /etc/powerdns/pdns.d \
     && chown -R abc:abc \
-    /var/run/pdns \
-    /etc/powerdns \
+        /var/run/pdns \
+        /etc/powerdns \
     && echo "*** other stuff ***" \
     && update-ca-certificates
 
@@ -37,9 +37,9 @@ RUN \
     && apt-get purge --auto-remove -y \
     && apt-get clean \
     && rm -rf \
-    /tmp/* \
-    /var/lib/apt/lists/* \
-    /var/tmp/*
+        /tmp/* \
+        /var/lib/apt/lists/* \
+        /var/tmp/*
 
 EXPOSE 5353/udp
 EXPOSE 5353/tcp

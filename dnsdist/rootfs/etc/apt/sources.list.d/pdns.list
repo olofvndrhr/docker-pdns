@@ -1,0 +1,1 @@
+deb [signed-by=/etc/apt/keyrings/dnsdist-pub.asc] http://repo.powerdns.com/debian bullseye-dnsdist-20 main
