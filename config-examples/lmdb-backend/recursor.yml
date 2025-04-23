@@ -1,0 +1,40 @@
+logging:
+  loglevel: 6
+
+incoming:
+  allow_from: []
+  listen:
+    - 0.0.0.0:53
+    - "[::]:53"
+
+outgoing:
+  source_address:
+    - 0.0.0.0
+    - "::"
+
+webservice:
+  address: 0.0.0.0
+  allow_from:
+    - 0.0.0.0/0
+    - "::/0"
+  password: xxxxxxx
+  port: 8082
+  webserver: true
+
+recursor:
+  security_poll_suffix: ""
+  serve_rfc1918: true
+  extended_resolution_errors: true
+
+  forward_zones_recurse:
+    - zone: .
+      recurse: true
+      forwarders: # forward everything not defined in "forward_zones" to cloudflare
+        - 1.1.1.1
+        - 1.0.0.1
+
+  forward_zones:
+    - zone: test.com
+      forwarders: # forward own zones to powerdns auth
+        - 127.0.0.1:5353
+        - "[::1]:5353"

@@ -43,7 +43,7 @@ recursor:
 
 ### cron
 
-this image also has cron installed. custom crontabs should be places in `/etc/cron.d/`.
+this image also has cron installed. custom crontabs should be placed in `/etc/cron.d/`.
 
 ```yml
 # compose.yml
@@ -77,7 +77,7 @@ docker run \
     olofvndrhr/pdns-recursor
 ```
 
-#### default `/etc/powerdns/pdns.conf`
+### default config
 
 ```txt
 local-address=0.0.0.0,::
@@ -102,11 +102,16 @@ docker run \
     olofvndrhr/pdns-auth
 ```
 
-#### default `/etc/powerdns/recursor.conf`
+### default config
 
 ```txt
-local-address=0.0.0.0,::
-include-dir=/etc/powerdns/recursor.d
+incoming:
+  listen:
+    - 0.0.0.0
+    - "::"
+
+recursor:
+  include_dir: /etc/powerdns/recursor.d
 ```
 
 ---
@@ -119,10 +124,67 @@ include-dir=/etc/powerdns/recursor.d
 
 to use your config, mount it at `/lightningstream.yml`.
 
-> no default config in this image
-
 ```bash
 docker run \
     -v ./lightningstream.yml:/lightningstream.yml \
     olofvndrhr/pdns-lightningstream
+```
+
+### env variables
+
+| env variable   | usage                          | required |
+| -------------- | ------------------------------ | -------- |
+| AWS_ACCESS_KEY | S3 access key for LMDB storage | yes      |
+| AWS_SECRET_KEY | S3 secret key for LMDB storage | yes      |
+| INSTANCE_NAME  | _unique_ name for the instance | yes      |
+
+### default config
+
+> no default config in this image
+
+## [powerdns-dnsdist](https://www.dnsdist.org/index.html)
+
+[**docker hub**](https://hub.docker.com/r/olofvndrhr/pdns-dnsdist)
+
+**image name**: `olofvndrhr/pdns-dnsdist`
+
+to use custom configs mount your own config file to `/etc/dnsdist/dnsdist.yml`
+
+```bash
+docker run \
+    -v ./dnsdist.yml:/etc/dnsdist/dnsdist.yml \
+    olofvndrhr/pdns-dnsdist
+```
+
+### env variables
+
+| env variable | usage                                                 | required |
+| ------------ | ----------------------------------------------------- | -------- |
+| CERT_DOMAIN  | domain of the certificate for DNS over TLS/HTTPS/QUIC | no       |
+
+### default config
+
+```txt
+acl:
+  - 0.0.0.0/0
+  - ::/0
+
+binds:
+  - listen_address: "0.0.0.0:53"
+    additional_addresses: ["[::]:53"]
+    protocol: "Do53"
+
+backends:
+  - address: "127.0.0.1:53"
+    protocol: "Do53"
+    name: local-recursor
+    tcp_only: true
+    health_checks:
+      qname: "a.root-servers.net."
+      qtype: "AAAA"
+      qclass: "CHAOS"
+      must_resolve: true
+
+load_balancing_policies:
+  default_policy: "firstAvailable"
 ```

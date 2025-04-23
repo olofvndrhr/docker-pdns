@@ -39,3 +39,16 @@ services:
       - INSTANCE_NAME=${INSTANCE_NAME}
       - AWS_ACCESS_KEY=${AWS_ACCESS_KEY}
       - AWS_SECRET_KEY=${AWS_SECRET_KEY}
+
+  dnsdist:
+    image: olofvndrhr/pdns-dnsdist:2.0.0
+    container_name: pdns-dnsdist
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./conf/dnsdist/:/etc/dnsdist/:ro
+      - /opt/certificates/${CERT_DOMAIN}:/certs/:ro
+    environment:
+      - TZ=Europe/Zurich
+      - PUID=4444
+      - PGID=4444
