@@ -22,7 +22,23 @@ COPY --from=builder /usr/local/bin/lightningstream /usr/local/bin/lightningstrea
 COPY rootfs /
 
 RUN \
+    echo "**** installing packages ****" \
+    && apt-get update \
+    && apt-get install -y \
+        dns-root-data \
+        publicsuffix
+
+RUN \
     echo "*** other stuff ***" \
     && update-ca-certificates
+
+RUN \
+    echo "**** cleanup ****" \
+    && apt-get purge --auto-remove -y \
+    && apt-get clean \
+    && rm -rf \
+        /tmp/* \
+        /var/lib/apt/lists/* \
+        /var/tmp/*
 
 VOLUME ["/data"]

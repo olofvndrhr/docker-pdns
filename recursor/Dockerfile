@@ -13,7 +13,8 @@ RUN \
     && apt-get install -y \
         # https://repo.powerdns.com/debian/dists/bullseye-rec-52/main/binary-amd64/Packages
         pdns-recursor=5.2.2-1pdns.debian11 \
-        dns-root-data
+        dns-root-data \
+        publicsuffix
 
 RUN \
     echo "**** creating folders ****" \

@@ -18,7 +18,8 @@ RUN \
         pdns-backend-mysql \
         pdns-backend-pgsql \
         pdns-backend-sqlite3 \
-        dns-root-data
+        dns-root-data \
+        publicsuffix
 
 RUN \
     echo "**** creating folders ****" \
