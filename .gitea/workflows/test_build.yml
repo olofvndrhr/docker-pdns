@@ -5,7 +5,7 @@ on:
     branches: [main, master]
 
 jobs:
-  build-recursor:
+  build-container:
     runs-on: ubuntu-latest
     strategy:
       matrix:
