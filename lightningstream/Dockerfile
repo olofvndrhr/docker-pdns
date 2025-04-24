@@ -5,7 +5,7 @@ ENV LS_VERSION="v0.4.3"
 ENV GOBIN=/usr/local/bin
 
 RUN \
-    echo "*** installing lightningstream ***" \
+    echo "*** installing pdns-lightningstream ***" \
     && git clone https://github.com/PowerDNS/lightningstream.git --depth 1 --branch "${LS_VERSION}" \
     && cd lightningstream \
     && go mod download \

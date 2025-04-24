@@ -12,7 +12,8 @@ RUN \
     && apt-get update \
     && apt-get install -y \
         # https://repo.powerdns.com/debian/dists/bullseye-dnsdist-20/main/binary-amd64/Packages
-        dnsdist=2.0.0~alpha1-1pdns.debian11
+        dnsdist=2.0.0~alpha1-1pdns.debian11 \
+        dns-root-data
 
 RUN \
     echo "**** creating folders ****" \

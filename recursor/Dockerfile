@@ -6,13 +6,14 @@ LABEL maintainer="Ivan Schaller" \
 COPY rootfs /
 
 RUN \
-    echo "**** installing pdns-rec ****" \
+    echo "**** installing pdns-recursor ****" \
     && install -d /etc/apt/keyrings \
     && curl https://repo.powerdns.com/FD380FBB-pub.asc | tee /etc/apt/keyrings/rec-pub.asc \
     && apt-get update \
     && apt-get install -y \
         # https://repo.powerdns.com/debian/dists/bullseye-rec-52/main/binary-amd64/Packages
-        pdns-recursor=5.2.2-1pdns.debian11
+        pdns-recursor=5.2.2-1pdns.debian11 \
+        dns-root-data
 
 RUN \
     echo "**** creating folders ****" \
