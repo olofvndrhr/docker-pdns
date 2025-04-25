@@ -10,8 +10,8 @@ RUN \
     echo "*** installing pdns-lightningstream ***" \
     && git clone https://github.com/PowerDNS/lightningstream.git --depth 1 --branch "${LS_VERSION}" \
     && cd lightningstream \
-    && go mod download -x\
-    && go install -xv ./cmd/lightningstream/
+    && go mod download \
+    && go install -v ./cmd/lightningstream/
 
 #####
 
