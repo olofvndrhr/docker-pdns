@@ -57,3 +57,9 @@ build-ls:
 build-dnsdist:
     @echo "building pdns-dnsdist"
     cd dnsdist && docker build . -f Dockerfile -t pdns-dnsdist:test
+
+build-all:
+    just build-auth
+    just build-rec
+    just build-ls
+    just build-dnsdist

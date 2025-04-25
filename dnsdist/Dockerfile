@@ -1,4 +1,4 @@
-FROM git.44net.ch/44net/debian-s6:11
+FROM git.44net.ch/44net/debian-s6:12
 
 LABEL maintainer="Ivan Schaller" \
     description="powerdns-dnsdist"
@@ -11,8 +11,8 @@ RUN \
     && curl https://repo.powerdns.com/FD380FBB-pub.asc | tee /etc/apt/keyrings/dnsdist-pub.asc \
     && apt-get update \
     && apt-get install -y \
-        # https://repo.powerdns.com/debian/dists/bullseye-dnsdist-20/main/binary-amd64/Packages
-        dnsdist=2.0.0~alpha1-1pdns.debian11 \
+        # https://repo.powerdns.com/debian/dists/bookworm-dnsdist-20/main/binary-amd64/Packages
+        dnsdist=2.0.0~alpha1-1pdns.debian12 \
         dns-root-data \
         publicsuffix
 

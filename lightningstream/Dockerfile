@@ -1,4 +1,4 @@
-FROM golang:1.22-bullseye AS builder
+FROM golang:1.24-bookworm AS builder
 
 ENV LS_VERSION="v0.4.3"
 
@@ -13,7 +13,7 @@ RUN \
 
 #####
 
-FROM git.44net.ch/44net/debian-s6:11
+FROM git.44net.ch/44net/debian-s6:12
 
 LABEL maintainer="Ivan Schaller" \
     description="powerdns-lightningstream"

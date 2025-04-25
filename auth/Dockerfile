@@ -1,4 +1,4 @@
-FROM git.44net.ch/44net/debian-s6:11
+FROM git.44net.ch/44net/debian-s6:12
 
 LABEL maintainer="Ivan Schaller" \
     description="powerdns-auth"
@@ -11,8 +11,8 @@ RUN \
     && curl https://repo.powerdns.com/FD380FBB-pub.asc | tee /etc/apt/keyrings/auth-pub.asc \
     && apt-get update \
     && apt-get install -y \
-        # https://repo.powerdns.com/debian/dists/bullseye-auth-49/main/binary-amd64/Packages
-        pdns-server=4.9.4-1pdns.bullseye \
+        # https://repo.powerdns.com/debian/dists/bookworm-auth-49/main/binary-amd64/Packages
+        pdns-server=4.9.4-1pdns.bookworm \
         pdns-backend-lmdb \
         pdns-backend-bind \
         pdns-backend-mysql \
