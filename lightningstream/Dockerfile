@@ -2,14 +2,16 @@ FROM golang:1.24-bookworm AS builder
 
 ENV LS_VERSION="v0.4.3"
 
-ENV GOBIN=/usr/local/bin
+ENV GOBIN=/usr/local/bin \
+    CGO_ENABLED=1 \
+    GOOS=linux
 
 RUN \
     echo "*** installing pdns-lightningstream ***" \
     && git clone https://github.com/PowerDNS/lightningstream.git --depth 1 --branch "${LS_VERSION}" \
     && cd lightningstream \
-    && go mod download \
-    && go install ./cmd/lightningstream/
+    && go mod -x download \
+    && go install -xv ./cmd/lightningstream/
 
 #####
 
