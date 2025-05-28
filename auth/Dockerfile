@@ -12,7 +12,7 @@ RUN \
     && apt-get update \
     && apt-get install -y \
         # https://repo.powerdns.com/debian/dists/bookworm-auth-49/main/binary-amd64/Packages
-        pdns-server=4.9.4-1pdns.bookworm \
+        pdns-server=4.9.5-1pdns.bookworm \
         pdns-backend-lmdb \
         pdns-backend-bind \
         pdns-backend-mysql \
