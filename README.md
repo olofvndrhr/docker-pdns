@@ -104,7 +104,7 @@ docker run \
 
 ### default config
 
-```txt
+```yml
 incoming:
   listen:
     - 0.0.0.0
@@ -164,7 +164,7 @@ docker run \
 
 ### default config
 
-```txt
+```yml
 acl:
   - 0.0.0.0/0
   - ::/0
