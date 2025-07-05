@@ -38,6 +38,8 @@ RUN \
         /var/lib/apt/lists/* \
         /var/tmp/*
 
+HEALTHCHECK --interval=15s --timeout=15s --start-period=5s --retries=3 CMD [ "rec_control", "ping" ]
+
 EXPOSE 53/udp
 EXPOSE 53/tcp
 EXPOSE 8082/tcp

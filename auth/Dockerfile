@@ -43,6 +43,8 @@ RUN \
         /var/lib/apt/lists/* \
         /var/tmp/*
 
+HEALTHCHECK --interval=15s --timeout=15s --start-period=5s --retries=3 CMD [ "pdns_control", "rping" ]
+
 EXPOSE 5353/udp
 EXPOSE 5353/tcp
 EXPOSE 8081/tcp
