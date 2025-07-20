@@ -12,7 +12,7 @@ RUN \
     && apt-get update \
     && apt-get install -y \
         # https://repo.powerdns.com/debian/dists/bookworm-dnsdist-20/main/binary-amd64/Packages
-        dnsdist=2.0.0~beta1-1pdns.debian12 \
+        dnsdist=2.0.0~rc2-1pdns.debian12 \
         dns-root-data \
         publicsuffix
 
