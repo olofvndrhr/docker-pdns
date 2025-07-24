@@ -1,6 +1,6 @@
 FROM golang:1.24-bookworm AS builder
 
-ENV LS_VERSION="v0.4.3"
+ENV LS_VERSION="v0.5.0"
 
 ENV GOBIN=/usr/local/bin \
     CGO_ENABLED=1 \
