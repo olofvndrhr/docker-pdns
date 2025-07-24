@@ -12,7 +12,7 @@ RUN \
     && apt-get update \
     && apt-get install -y \
         # https://repo.powerdns.com/debian/dists/bookworm-rec-52/main/binary-amd64/Packages
-        pdns-recursor=5.2.2-1pdns.debian12 \
+        pdns-recursor=5.2.4-1pdns.debian12 \
         dns-root-data \
         publicsuffix
 
