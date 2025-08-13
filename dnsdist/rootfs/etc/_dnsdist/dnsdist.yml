@@ -1,65 +1,48 @@
 acl:
-  - 0.0.0.0/0
-  - ::/0
+  - "0.0.0.0/0"
+  - "::/0"
+
+security_polling:
+  suffix: ""
 
 binds:
   - listen_address: "0.0.0.0:53"
-    additional_addresses: ["[::]:53"]
     protocol: "Do53"
+    reuseport: true
 
-  # - listen_address: "0.0.0.0:443"
-  #   additional_addresses: ["[::]:443"]
-  #   protocol: "DoH"
-  #   tls:
-  #     certificates:
-  #       - certificate: "/certs/fullchain.pem"
-  #         key: "/certs/privkey.pem"
-  #   doh:
-  #     provider: "nghttp2"
-  #     paths:
-  #       - "/"
-  #     custom_response_headers:
-  #       - key: "alt-svc"
-  #         value: 'h3=":443"'
+  - listen_address: "[::]:53"
+    protocol: "Do53"
+    reuseport: true
 
-  # - listen_address: "0.0.0.0:443"
-  #   additional_addresses: ["[::]:443"]
-  #   protocol: "DoH3"
-  #   tls:
-  #     certificates:
-  #       - certificate: "/certs/fullchain.pem"
-  #         key: "/certs/privkey.pem"
-  #   quic:
-  #     congestion_control_algorithm: "bbr"
+load_balancing_policies:
+  default_policy: "wrandom"
 
-  # - listen_address: "0.0.0.0:853"
-  #   additional_addresses: ["[::]:853"]
-  #   protocol: "DoQ"
-  #   tls:
-  #     certificates:
-  #       - certificate: "/certs/fullchain.pem"
-  #         key: "/certs/privkey.pem"
-  #   quic:
-  #     congestion_control_algorithm: "bbr"
+packet_caches:
+  - name: "cache"
+    size: 100
 
-  # - listen_address: "0.0.0.0:853"
-  #   additional_addresses: ["[::]:853"]
-  #   protocol: "DoT"
-  #   tls:
-  #     certificates:
-  #       - certificate: "/certs/fullchain.pem"
-  #         key: "/certs/privkey.pem"
+pools:
+  - name: "default"
+    packet_cache: "cache"
 
 backends:
   - address: "127.0.0.1:53"
     protocol: "Do53"
-    name: local-recursor
+    name: "local-recursor"
     tcp_only: true
+    weight: 100
+    pools:
+      - "default"
     health_checks:
       qname: "a.root-servers.net."
       qtype: "AAAA"
-      qclass: "CHAOS"
+      qclass: "IN"
       must_resolve: true
 
-load_balancing_policies:
-  default_policy: "firstAvailable"
+query_rules:
+  - name: "default route"
+    selector:
+      type: "All"
+    action:
+      type: "Pool"
+      pool_name: "default"
