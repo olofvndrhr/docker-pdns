@@ -1,1 +1,1 @@
-deb [signed-by=/etc/apt/keyrings/rec-pub.asc] http://repo.powerdns.com/debian bookworm-rec-52 main
+deb [signed-by=/etc/apt/keyrings/rec-pub.asc] http://repo.powerdns.com/debian trixie-rec-53 main
