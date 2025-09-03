@@ -43,4 +43,6 @@ RUN \
         /var/lib/apt/lists/* \
         /var/tmp/*
 
+# HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD curl -sSf http://localhost:8500/healthz | grep ok
+
 VOLUME ["/data"]

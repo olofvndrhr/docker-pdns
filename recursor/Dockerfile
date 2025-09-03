@@ -12,7 +12,7 @@ RUN \
     && apt-get update \
     && apt-get install -y \
         # https://repo.powerdns.com/debian/dists/trixie-rec-53/main/binary-amd64/Packages
-        pdns-recursor=5.3.0~beta1-1pdns.debian13 \
+        pdns-recursor=5.3.0-1pdns.debian13 \
         dns-root-data \
         publicsuffix
 
@@ -38,7 +38,9 @@ RUN \
         /var/lib/apt/lists/* \
         /var/tmp/*
 
-HEALTHCHECK --interval=15s --timeout=15s --start-period=5s --retries=3 CMD [ "rec_control", "ping" ]
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 CMD [ "rec_control", "ping" ]
+
+VOLUME [ "/etc/powerdns" ]
 
 EXPOSE 53/udp
 EXPOSE 53/tcp
